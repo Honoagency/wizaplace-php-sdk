@@ -329,6 +329,34 @@ class BasketService extends AbstractService
             throw $exception;
         }
     }
+    
+    public function bulkAddProductsFromBasket(string $basketId, array $declinations): void
+    {
+        $jsonDeclinations = [];
+
+        foreach ($declinations as $declinationId) {
+            $jsonDeclinations[] = json_encode($declinationId);
+        }
+
+        try {
+            $this->client->post(
+                "basket/{$basketId}/bulk-add",
+                [
+                    RequestOptions::JSON => [
+                        'declinations' => $jsonDeclinations,
+                    ],
+                ]
+            );
+        } catch (ClientException $exception) {
+            $code = $exception->getResponse()->getStatusCode();
+
+            if (404 === $code) {
+                throw new NotFound('Basket not found', $exception);
+            }
+
+            throw $exception;
+        }
+    }
 
     /**
      * Clear all the products from the basket.
