@@ -332,18 +332,12 @@ class BasketService extends AbstractService
     
     public function bulkAddProductsFromBasket(string $basketId, array $declinations): void
     {
-        $jsonDeclinations = [];
-
-        foreach ($declinations as $declinationId) {
-            $jsonDeclinations[] = json_encode($declinationId);
-        }
-
         try {
             $this->client->post(
                 "basket/{$basketId}/bulk-add",
                 [
                     RequestOptions::JSON => [
-                        'declinations' => $jsonDeclinations,
+                        'declinations' => json_encode($declinations),
                     ],
                 ]
             );
