@@ -232,6 +232,20 @@ class BasketService extends AbstractService
             ]
         );
     }
+    
+    public function setUserBasketIdWithUserId($userId, ?string $basketId): void
+    {
+        $this->client->mustBeAuthenticated();
+
+        $this->client->post(
+            "users/$userId/basket",
+            [
+                RequestOptions::JSON => [
+                    'id' => $basketId,
+                ],
+            ]
+        );
+    }
 
     public function deleteUserBasket(): void
     {
