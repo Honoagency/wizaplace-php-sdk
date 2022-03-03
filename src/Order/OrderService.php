@@ -147,7 +147,7 @@ class OrderService extends AbstractService
     {
         $this->client->mustBeAuthenticated();
 
-        return new Order($this->client->get('user/orders/' . $orderId, []));
+        return new Order($this->client->get('orders/' . $orderId, []));
     }
 
     /**
