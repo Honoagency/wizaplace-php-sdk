@@ -244,6 +244,21 @@ class OrderService extends AbstractService
             ]
         )['returnId'];
     }
+    
+    public function orderMarkAsPaid(int $orderId): void
+    {
+        $this->client->mustBeAuthenticated();
+
+        try {
+            $this->client->put('orders/' . $orderId . '/mark-as-paid');
+        } catch (ClientException $exception) {
+            if ($exception->getResponse()->getStatusCode() === 404) {
+                throw new NotFound("Order #{$orderId} not found", $exception);
+            }
+
+            throw $exception;
+        }
+    }
 
     /**
      * @param AfterSalesServiceRequest $request
