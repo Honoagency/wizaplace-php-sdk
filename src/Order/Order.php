@@ -112,7 +112,7 @@ final class Order
         $this->total = $data['total'];
         $this->subtotal = $data['subtotal'];
         $this->taxtotal = $data['taxTotal'];
-        $this->userId = $data['user_id'];
+        $this->userId = $data['userId'];
         $this->timestamp = new \DateTimeImmutable('@' . $data['timestamp']);
         $this->status = new OrderStatus($data['status']);
         $this->shippingName = $data['shippingName'];
