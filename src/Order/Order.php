@@ -106,14 +106,13 @@ final class Order
      */
     public function __construct(array $data)
     {
-        dd($data);
         $this->id = $data['id'];
         $this->companyId = $data['companyId'];
         $this->companyName = $data['companyName'];
         $this->total = $data['total'];
         $this->subtotal = $data['subtotal'];
         $this->taxtotal = $data['taxTotal'];
-        $this->userId = $data['userId'];
+        $this->userId = $data['user_id'];
         $this->timestamp = new \DateTimeImmutable('@' . $data['timestamp']);
         $this->status = new OrderStatus($data['status']);
         $this->shippingName = $data['shippingName'];
