@@ -106,6 +106,7 @@ final class Order
      */
     public function __construct(array $data)
     {
+        dd($data);
         $this->id = $data['id'];
         $this->companyId = $data['companyId'];
         $this->companyName = $data['companyName'];
