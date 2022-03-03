@@ -67,6 +67,8 @@ final class Order
     private $basketId;
     /** @var string[] */
     protected $extra;
+    
+    private $userId;
 
     /** @var AttachmentsOrder[] */
     private $orderAttachments;
@@ -110,6 +112,7 @@ final class Order
         $this->total = $data['total'];
         $this->subtotal = $data['subtotal'];
         $this->taxtotal = $data['taxTotal'];
+        $this->userId = $data['user_id'];
         $this->timestamp = new \DateTimeImmutable('@' . $data['timestamp']);
         $this->status = new OrderStatus($data['status']);
         $this->shippingName = $data['shippingName'];
@@ -213,6 +216,11 @@ final class Order
     public function getStatus(): OrderStatus
     {
         return $this->status;
+    }
+    
+    public function getUserId(): OrderStatus
+    {
+        return $this->user_id;
     }
 
     /**
