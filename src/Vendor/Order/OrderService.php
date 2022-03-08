@@ -233,7 +233,7 @@ class OrderService extends AbstractService
         $this->client->mustBeAuthenticated();
         $data = $this->client->get("orders/${orderId}");
 
-        return new Order($data);
+        return $data;
     }
 
     /**
