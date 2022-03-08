@@ -228,7 +228,7 @@ class OrderService extends AbstractService
      * @throws \Wizaplace\SDK\Exception\JsonDecodingError
      * @throws \Exception
      */
-    public function getOrderById(int $orderId): Order
+    public function getOrderById(int $orderId)
     {
         $this->client->mustBeAuthenticated();
         $data = $this->client->get("orders/${orderId}");
