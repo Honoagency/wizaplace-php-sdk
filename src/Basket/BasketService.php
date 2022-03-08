@@ -590,14 +590,14 @@ class BasketService extends AbstractService
      */
     public function updateComments(string $basketId, array $comments): void
     {
-        $commentsToPost = array_map([self::class, 'serializeComment'], $comments);
+   
 
         try {
             $this->client->post(
                 "basket/{$basketId}/comments",
                 [
                     RequestOptions::FORM_PARAMS => [
-                        'comments' => $commentsToPost,
+                        'comments' => $comments,
                     ],
                 ]
             );
