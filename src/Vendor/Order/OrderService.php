@@ -148,14 +148,14 @@ class OrderService extends AbstractService
      * @throws \Wizaplace\SDK\Authentication\AuthenticationRequired
      * @throws \Wizaplace\SDK\Exception\JsonDecodingError
      */
-    public function listOrders(?OrderStatus $statusFilter = null, ?OrderListFilter $additionalFilter = null): array
+    public function listOrders(): array
     {
         $this->client->mustBeAuthenticated();
 
         $data = $this->client->get(
             'orders',
             [
-                RequestOptions::QUERY => $this->prepareQueryParams($statusFilter, $additionalFilter),
+                RequestOptions::QUERY => ['items_per_page' => 99999999999'],
             ]
         );
 
