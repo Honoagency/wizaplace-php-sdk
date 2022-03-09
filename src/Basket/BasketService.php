@@ -330,7 +330,7 @@ class BasketService extends AbstractService
         }
     }
     
-    public function bulkAddProductsFromBasket(string $basketId, array $declinations): void
+    public function bulkAddProductsFromBasket(string $basketId, array $declinations)
     {
         try {
            return $this->client->post(
