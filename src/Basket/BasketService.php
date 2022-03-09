@@ -275,10 +275,10 @@ class BasketService extends AbstractService
      * @throws \Wizaplace\SDK\Exception\JsonDecodingError
      * @see addProductToBasket()
      */
-    public function removeProductFromBasket(string $basketId, DeclinationId $declinationId): void
+    public function removeProductFromBasket(string $basketId, DeclinationId $declinationId)
     {
         try {
-            $this->client->post(
+            return $this->client->post(
                 "basket/{$basketId}/remove",
                 [
                     RequestOptions::FORM_PARAMS => [
