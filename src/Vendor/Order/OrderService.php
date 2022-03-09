@@ -155,7 +155,7 @@ class OrderService extends AbstractService
         $data = $this->client->get(
             'orders',
             [
-                RequestOptions::QUERY => ['items_per_page' => 99999999999'],
+                RequestOptions::QUERY => ['items_per_page' => 99999999999]
             ]
         );
 
