@@ -126,6 +126,20 @@ class DiscussionService extends AbstractService
 
         return new Discussion($discussionData);
     }
+    
+    public function startDiscussionFromDeclinationIdAndOrderId(DeclinationId $declinationId, $orderId): Discussion
+    {
+        $this->client->mustBeAuthenticated();
+
+        try {
+            $discussionData = $this->client->post('discussions', [RequestOptions::JSON => ['declinationId' => (string) $declinationId, 'orderId' => $orderId]]);
+
+            return new Discussion($discussionData);
+        } catch (ProductNotFound $e) {
+            // add declinationId to exception's context
+            throw new ProductNotFound($e->getMessage(), array_merge($e->getContext(), ['declinationId' => (string) $declinationId]), $e);
+        }
+    }
 
     /**
      * Start a discussion with a vendor about a specific product identified by its declination ID.
