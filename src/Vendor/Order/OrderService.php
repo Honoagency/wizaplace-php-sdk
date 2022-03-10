@@ -178,7 +178,7 @@ class OrderService extends AbstractService
             ]
         );
 
-        return $orderData;
+        return $data;
     }
 
     protected function prepareQueryParams(?OrderStatus $statusFilter = null, ?OrderListFilter $additionalFilter = null): array
