@@ -166,6 +166,20 @@ class OrderService extends AbstractService
             $data
         );
     }
+    
+    public function listOrdersRaw()
+    {
+        $this->client->mustBeAuthenticated();
+
+        $data = $this->client->get(
+            'orders',
+            [
+                RequestOptions::QUERY => ['items_per_page' => 99999999999]
+            ]
+        );
+
+        return $orderData;
+    }
 
     protected function prepareQueryParams(?OrderStatus $statusFilter = null, ?OrderListFilter $additionalFilter = null): array
     {
