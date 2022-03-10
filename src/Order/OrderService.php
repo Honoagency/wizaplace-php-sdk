@@ -269,7 +269,7 @@ class OrderService extends AbstractService
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Wizaplace\SDK\Exception\JsonDecodingError
      */
-    public function sendAfterSalesServiceRequest(AfterSalesServiceRequest $request): void
+    public function sendAfterSalesServiceRequest(AfterSalesServiceRequest $request)
     {
         $request->validate();
         $this->client->mustBeAuthenticated();
