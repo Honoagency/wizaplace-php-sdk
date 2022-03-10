@@ -127,12 +127,12 @@ class DiscussionService extends AbstractService
         return new Discussion($discussionData);
     }
     
-    public function startDiscussionFromDeclinationIdAndOrderId(DeclinationId $declinationId, $orderId): Discussion
+    public function startDiscussionFromDeclinationIdAndOrderId(DeclinationId $declinationId, $orderId, $companyId): Discussion
     {
         $this->client->mustBeAuthenticated();
 
         try {
-            $discussionData = $this->client->post('discussions', [RequestOptions::JSON => ['declinationId' => (string) $declinationId, 'orderId' => $orderId]]);
+            $discussionData = $this->client->post('discussions', [RequestOptions::JSON => ['declinationId' => (string) $declinationId, 'orderId' => $orderId, 'companyId' => $companyId]]);
 
             return new Discussion($discussionData);
         } catch (ProductNotFound $e) {
