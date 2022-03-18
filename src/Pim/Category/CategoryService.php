@@ -29,7 +29,6 @@ class CategoryService extends AbstractService
         $this->client->mustBeAuthenticated();
         $categoriesData = $this->client->get('categories', ['leaves' => true]);
 
-        dd($categoriesData);
         return array_map(
             static function ($categoryData) {
                 return new Category($categoryData);
